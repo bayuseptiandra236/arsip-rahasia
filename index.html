@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arsip Rahasia #07</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(ellipse at top,#30204f,#101027 70%);color:#fff6e9;font-family:system-ui,sans-serif}.card{width:min(100%,500px);padding:28px;background:#191936;border:1px solid #ffffff28;border-radius:24px;box-shadow:0 20px 60px #0007}.stamp{display:inline-block;color:#ff72b6;border:1px solid #ff72b6;padding:7px 10px;font-size:10px;font-weight:800;letter-spacing:2px}h1{font-size:clamp(32px,9vw,44px);line-height:1.05}h1 span{color:#77f7e5}p{line-height:1.7;color:#c4c2dd}.terminal{padding:14px;background:#0d0d20;border-radius:10px;color:#77f7e5;font:12px monospace;margin:20px 0}button{border:0;border-radius:12px;padding:13px 16px;font-weight:800;cursor:pointer;margin:4px 3px 4px 0}.main{background:#77f7e5;color:#101027}.alt{background:#292943;color:white;border:1px solid #ffffff30}.hidden{display:none!important}.detail{display:inline-block;background:#ffffff0c;border:1px solid #ffffff20;border-radius:10px;padding:12px;margin:4px}.detail b{display:block;color:#77f7e5;font-size:10px;margin-bottom:5px}.pink{color:#ff72b6}.small{font-size:12px;color:#9998b7}
+</style>
+</head>
+<body>
+<main class="card" id="one">
+<div class="stamp">DOKUMEN RAHASIA · 07-B</div>
+<h1>Ada sesuatu<br>yang harus kamu<br><span>ketahui.</span></h1>
+<p>Sebuah berkas misterius ditemukan di server bayuk. Isinya diduga berhubungan dengan seseorang yang cukup sering diajak ngobrol. 👀</p>
+<div class="terminal">FILE: mabar_final_beneran_final2.fix<br>STATUS: mencurigakan sekali</div>
+<p class="small">Kalau bukan targetnya, silakan tutup halaman ini. Kalau targetnya... ya telanjur penasaran, kan? 😭</p>
+<button class="main" onclick="scan()">🔓 Buka berkas</button>
+<button class="alt" onclick="document.getElementById('msg').textContent='ERROR 404: rasa penasaran tidak ditemukan. Coba buka berkasnya dulu 😭'">Keluar</button>
+<p id="msg" class="pink"></p>
+</main>
+<main class="card hidden" id="two">
+<div class="stamp">MEMINDAI BERKAS...</div>
+<h1>Mohon tunggu.<br><span>Ini serius.</span></h1>
+<p id="status">Menghubungi Land of Dawn...</p>
+<div class="terminal"><div style="height:5px;background:#ffffff18;border-radius:8px"><div id="bar" style="height:5px;width:0;background:#77f7e5;border-radius:8px"></div></div></div>
+</main>
+<main class="card hidden" id="three">
+<div class="stamp">HASIL INVESTIGASI</div>
+<h1>TERUNGKAP. 🕵️</h1>
+<p>Ancaman yang terdeteksi ternyata bukan hacker, bukan musuh dalam selimut, dan bukan lose streak 9 kali.</p>
+<div class="terminal" style="color:#fff6e9;border:1px dashed #ff72b6">
+<div class="stamp">UNDANGAN KHUSUS</div>
+<h1 style="font-size:30px">OPERASI <span class="pink">MABAR MLBB</span></h1>
+Dengan ini, <b>bayuk</b> mengundang kamu untuk ikut mabar. Tidak ada paksaan, kecuali paksaan dari matchmaking yang suka memberi tim random. 😭
+<div style="margin-top:15px">
+<div class="detail"><b>MODE</b>Rank 🎮</div>
+<div class="detail"><b>WAKTU</b>Sebisanya ⏳</div>
+<div class="detail"><b>LOKASI</b>Rumah masing-masing 🏠</div>
+<div class="detail"><b>PARTISIPAN</b>Kamu, kalau mau ✨</div>
+</div>
+</div>
+<p>Pilih respons resmi. Sistem tidak akan menghakimi... paling cuma sedikit kecewa secara digital.</p>
+<button class="main" onclick="reply('gas')">🫡 Misi diterima</button>
+<button class="alt" onclick="reply('jadwal')">🗓️ Atur waktu dulu</button>
+<button class="alt" onclick="reply('kabur')">🚪 Kabur dari misi</button>
+<p id="reply" class="pink"></p>
+<p class="small">Dibuat oleh bayuk · 100% gabut, 0% tekanan.</p>
+</main>
+<script>
+function scan(){document.getElementById('one').classList.add('hidden');document.getElementById('two').classList.remove('hidden');let i=0;let t=['Menghubungi Land of Dawn...','Mendeteksi niat mabar...','Menghitung tingkat kegabutan bayuk...','HASIL: terlalu gabut untuk tidak mengajakmu 😭'];function step(){document.getElementById('status').textContent=t[i];document.getElementById('bar').style.width=((i+1)/t.length*100)+'%';i++;if(i<t.length)setTimeout(step,700);else setTimeout(()=>{document.getElementById('two').classList.add('hidden');document.getElementById('three').classList.remove('hidden')},700)}step()}
+function reply(x) {
+    let m = {
+        gas: '✅ Misi diterima! Hubungi bayuk untuk menentukan jam. Server ikut senang 🥳',
+        jadwal: '📅 Siap, mari atur jadwalnya lewat WhatsApp ya!',
+        kabur: '🚪 Kamu memilih kabur dari misi... server bersedih 🥲'
+    }[x];
+    
+    // Menampilkan teks respons di lingkaran
+    document.getElementById('reply').innerHTML = m;
+    
+    // Jika yang diklik 'gas' atau 'jadwal', arahkan ke WhatsApp setelah 1.5 detik
+    if (x === 'gas' || x === 'jadwal') {
+        setTimeout(function() {
+            let pesan = (x === 'gas') ? 'main yuk' : 'engko ae yu';
+            window.location.href = 'https://wa.me/6281216771498?text=' + encodeURIComponent(pesan);
+        }, 1500); // Waktu jeda 1.5 detik agar teks lingkaran sempat terbaca dulu
+    }
+}
+
+</script>
+</body>
+</html>
